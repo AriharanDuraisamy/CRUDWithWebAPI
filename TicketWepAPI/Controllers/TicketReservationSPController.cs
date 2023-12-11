@@ -11,12 +11,12 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TicketDetailsSPController : ControllerBase
+    public class TicketReservationSPController : ControllerBase
     {
 
         private readonly ITicketSP Details;
 
-        public TicketDetailsSPController()
+        public TicketReservationSPController()
         {
             Details = new TicketBookingSP();
         }
