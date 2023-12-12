@@ -8,9 +8,9 @@ using System.Data.SqlClient;
 
 namespace WebAPIDapperDataAccessLayer
 {
-    public class TicketBookingSP : ITicketSP
+    public class TicketBookingSP : ITicketBookingSP
     {
-        public void InsertSP(TicketModelSP Details)
+        public void InsertSP(TicketModelSP details)
         {
             try
             {
@@ -18,7 +18,7 @@ namespace WebAPIDapperDataAccessLayer
 
                 var con = new SqlConnection(connectionString);
                 con.Open();
-                var insertQuery = $"exec insertsp { Details.TICKETNUMBER},'{Details.PASSENGERNAME}' ,{ Details.PHNUMBER} ,'{ Details.EMAILID}' ,'{Details.JOURNEYDATE}'";
+                var insertQuery = $"exec insertsp '{ details.TICKETNUMBER}','{details.PASSENGERNAME}' ,{ details.PHNUMBER} ,'{ details.EMAILID}' ,'{details.JOURNEYDATE}'";
                 con.Execute(insertQuery);
                 con.Close();
 
@@ -34,7 +34,7 @@ namespace WebAPIDapperDataAccessLayer
             }
         }
 
-        public void DeleteSP(long PASSENGERID)
+        public void DeleteSP(long passengerid)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace WebAPIDapperDataAccessLayer
 
                 var con = new SqlConnection(connectionString);
                 con.Open();
-                var deleteQuery = $"exec deletesp {PASSENGERID}";
+                var deleteQuery = $"exec deletesp {passengerid}";
                 con.Execute(deleteQuery);
                 con.Close();
 
@@ -83,7 +83,7 @@ namespace WebAPIDapperDataAccessLayer
                 throw;
             }
         }
-        public List<TicketModelSP> ReadbyIDSP(long PASSENGERID)
+        public List<TicketModelSP> ReadbyIDSP(long passengerid)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace WebAPIDapperDataAccessLayer
 
                 var con = new SqlConnection(connectionString);
                 con.Open();
-                var selectQuery = $"exec selectidsp  {PASSENGERID} ";
+                var selectQuery = $"exec selectidsp  {passengerid} ";
                 var products = con.Query<TicketModelSP>(selectQuery);
 
                 con.Close();
@@ -109,14 +109,14 @@ namespace WebAPIDapperDataAccessLayer
                 throw;
             }
         }
-        public void UpdateSP(int ticupd, TicketModelSP Details)
+        public void UpdateSP(int tktupdate, TicketModelSP details)
         {
             try
             {
                 var connectionString = "Data source=DESKTOP-BLBGEHJ\\SQLEXPRESS;initial catalog=batch7;user id=sa;password=Anaiyaan@123;";
                 var con = new SqlConnection(connectionString);
                 con.Open();
-                var updateQuery = $"exec updatesp  {ticupd} ,{ Details.TICKETNUMBER},'{Details.PASSENGERNAME}' ,{ Details.PHNUMBER} ,'{ Details.EMAILID}' ,'{Details.JOURNEYDATE}'";
+                var updateQuery = $"exec updatesp  {tktupdate} ,'{ details.TICKETNUMBER}','{details.PASSENGERNAME}' ,{details.PHNUMBER} ,'{ details.EMAILID}' ,'{details.JOURNEYDATE}'";
                 con.Execute(updateQuery);
 
             }

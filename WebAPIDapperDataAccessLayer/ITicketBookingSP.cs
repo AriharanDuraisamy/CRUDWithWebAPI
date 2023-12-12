@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebAPIDapperDataAccessLayer
 {
-    public interface ITicketSP
+    public interface ITicketBookingSP
     {
         public void InsertSP(TicketModelSP Details);
         public void DeleteSP(long PASSENGERID);
